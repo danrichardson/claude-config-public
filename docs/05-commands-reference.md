@@ -52,6 +52,8 @@ Every command except `/ticket-install` begins with a `Pre-flight: detect backend
 
 **Markdown**: Copies `tickets/TEMPLATE.md` to `tickets/TKT-NNN.md`, fills frontmatter + Description + Acceptance Criteria, status `open`.
 
+**Pasted images**: If you paste an image into the `/tn` prompt, the model uses it to generate the ticket and writes a *Visual context* block of factual prose into the description. The binary image itself is **not** uploaded — Plane's MCP exposes no attachment tool, and the markdown ticket file is text-only. The prose is the only thing downstream agents see, so paste any image you want represented before submitting (the model can't go back and look at it later).
+
 **Side effects**: Creates one work item / file. Does not investigate.
 
 ## `/ticket-list`

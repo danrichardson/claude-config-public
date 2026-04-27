@@ -4,6 +4,10 @@ All notable changes to `claude-config`. Format loosely follows [Keep a Changelog
 
 ## [Unreleased]
 
+### Changed — `/ticket-new` captures pasted images as text
+
+`/ticket-new` (and its `/tn` alias) now distills any image pasted into the prompt into a **Visual context** block in the ticket description. The ticket file stores text only, so the binary image was previously dropped at session end — meaning `/ticket-investigate` and other downstream agents never saw it. The new behavior writes 1–3 factual sentences per image (UI element + state + visible text + any error) into the description so the visual evidence persists in a form downstream agents can read. Reference at [docs/05-commands-reference.md](docs/05-commands-reference.md#ticket-new-title) updated. (`commands/ticket-new.md`)
+
 ### Changed — Operation workflow hardening (verification, residuals, manual handoff)
 
 A bundle of changes addressing failure modes surfaced during recent operation runs. The unifying principle: brief-level verification is the gate, the operation-level command set is the authoritative gate, and loose ends ("residuals") are first-class state instead of footnotes. Touches `commands/op-scaffold.md`, `commands/op-run.md`, all three `agents/operation-*.md` files, and `operation-templates/META_PROMPT_FOR_PLAN_OPUS.md`.

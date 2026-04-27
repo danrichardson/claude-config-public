@@ -32,11 +32,12 @@ Argument: a short description of the bug, feature, or enhancement to create.
    - Priority: low, medium, high, or critical (infer from context; default medium)
    - Description
    - Acceptance criteria (infer from the description if not explicit)
+   - **Visual context** (only if the user pasted one or more images into the prompt): for each image, write 1–3 concrete, factual sentences capturing what it shows — UI element + state + visible text + any error or anomaly. The binary image is NOT saved with the ticket; this prose is the only artifact downstream agents (e.g. `/ticket-investigate`) will see, so it must stand alone (no "see screenshot above"). If the image contradicts or sharpens the user's prose, prefer the image and say so explicitly.
    - **App / preview profile:** read the `## Preview profiles` section of `.claude/ticket-config.md`. If there are 2+ profiles, ask the user which one this ticket targets (show profile names + one-line description; default = profile marked `default: true`). If only 1 profile, use it silently. If no profiles, set `app: (none)`.
 
 4. **Create the ticket file** at `{tickets-dir}/{PREFIX}{NNN}.md` using `{tickets-dir}/TEMPLATE.md`:
    - Fill in all header fields (id, title, type, status: open, priority, created date, updated date, app)
-   - Fill in Description and Acceptance Criteria
+   - Fill in Description and Acceptance Criteria. If images were attached, append a `**Visual context**` subsection at the end of the Description with one bullet per image.
    - Leave all agent sections empty
 
 5. **Output a summary:**
@@ -53,6 +54,7 @@ Argument: a short description of the bug, feature, or enhancement to create.
 - Branch field is empty until investigation/approval.
 - Do NOT start investigating — just create the ticket.
 - Use today's date for created/updated.
+- **Pasted images are session-only.** The ticket file stores text only — any image the user pasted into the prompt is dropped at session end. Always distill it into the Visual context bullets (step 3 / step 4) so the next agent has the information in text form.
 
 ## Compatibility Notes
 
