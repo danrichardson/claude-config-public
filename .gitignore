@@ -49,10 +49,26 @@ commands/tc.md
 commands/tro.md
 commands/tcl.md
 commands/tch.md
+commands/tdc.md
+commands/tam.md
 
 # Rendered Task Scheduler XML (contains username, generated at install time)
 windows/*.rendered
 
 # Per-ticket worktrees + preview PID/meta files (created by /ticket-batch, /ticket-chain)
 .worktrees/
+
+# Leave-behind review checklists from /ticket-chain Phase 4 (ephemeral, not committed)
+CHAIN-REVIEW-*.md
+
+# Scratch plans directory created by /plan-new and similar (ephemeral)
+plans/
+
+# VS Code extension build artifacts (extension/ is the travelagent source tree)
+extension/node_modules/
+extension/dist/
+extension/out/
+extension/.vscode-test/
+# Keep the extension's VS Code debug config (blanket .vscode/ above would exclude it)
+!extension/.vscode/
 
